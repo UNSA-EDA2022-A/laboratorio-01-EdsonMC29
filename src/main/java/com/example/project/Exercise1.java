@@ -14,19 +14,39 @@ public class Exercise1 {
 		}
 	}
 
-	public String convertirBaseGabriel(int a) {
+	public static String convertirBaseGabriel(int a) {
 		
 		int numGab = 0;
-		int n = a.length();
-		int i = 0;
-		while(n>0) {
-			int x = Integer.parseInt(a.substring(n-1,n));
-			numGab += x * (Math.pow(2,i+1)-1);
-			n--;
-			i++;	
-		}
-		return "SALIDA:" + numGab;
+		int comprobar = 0;
+		String number = String.valueOf(a);
 		
-		return "El numero proporcionado no esta en base Gabriel.";
+		//Separamos cada digito como cadena String
+        String[] digito = number.split("(?<=.)");
+        int p= digito.length;
+        for(int i = 0; i < digito.length; i++) {            
+            int d = Integer.parseInt(digito[i]);
+            
+            //expresion numero Gabriel
+            numGab += d * (Math.pow(2,p)-1);
+            p--;
+            
+            //separamos para comprobar desde la posicion del 2 
+            if(d == 2 ) {
+            	for(int j = i; j < digito.length; j++) {
+            		int adelante = Integer.parseInt(digito[j]);
+            		 
+            		//comprobamos acumulando suma del 2 en adelante si posee digitos diferentes de 0
+            		if(adelante == 2 || Integer.parseInt(digito[digito.length-1]) == 2 || adelante == 1) {
+            			comprobar += adelante ;
+            		}
+            	}
+            }
+        }
+        
+        //si posee solo 2 o ninguno es numero Gabriel
+        if(comprobar <= 2) {
+		return "SALIDA:" + numGab;
+        }
+        else return "El numero proporcionado no esta en base Gabriel.";
 	}
 }
