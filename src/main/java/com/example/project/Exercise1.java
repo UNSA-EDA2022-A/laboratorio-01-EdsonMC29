@@ -21,26 +21,26 @@ public class Exercise1 {
 		String number = String.valueOf(a);
 		
 		//Separamos cada digito como cadena String
-        String[] digito = number.split("(?<=.)");
-        int p= digito.length;
-        for(int i = 0; i < digito.length; i++) {            
-            int d = Integer.parseInt(digito[i]);
+       		 String[] digito = number.split("(?<=.)");
+        	int p= digito.length;
+        	for(int i = 0; i < digito.length; i++) {            
+            	int d = Integer.parseInt(digito[i]);
             
-            //expresion numero Gabriel
-            numGab += d * (Math.pow(2,p)-1);
-            p--;
+            	//expresion numero Gabriel
+            	numGab += d * (Math.pow(2,p)-1);
+            	p--;
             
-            //separamos para comprobar desde la posicion del 2 
-            if(d == 2 ) {
-            	for(int j = i; j < digito.length; j++) {
+            	//separamos para comprobar desde la posicion del 2 
+            	if(d == 2 ) {
+            	   for(int j = i; j < digito.length; j++) {
             		int adelante = Integer.parseInt(digito[j]);
             		 
             		//comprobamos acumulando suma del 2 en adelante si posee digitos diferentes de 0
             		if(adelante == 2 || Integer.parseInt(digito[digito.length-1]) == 2 || adelante == 1) {
             			comprobar += adelante ;
-            		}
-            	}
-            }
+            	    	}
+            	   }
+                }
         }
         
         //si posee solo 2 o ninguno es numero Gabriel
